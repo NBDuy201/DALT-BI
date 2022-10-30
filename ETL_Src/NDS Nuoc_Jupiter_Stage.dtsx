@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="NDS Nuoc_Jupiter_Stage"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{BA56A75C-8022-45F4-9ED2-602DBD7372C2}">
+  DTS:VersionBuild="12"
+  DTS:VersionGUID="{1BC74EED-936F-4E99-B3E3-3D0C0BA942D2}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -100,6 +100,181 @@
         <pipeline
           version="1">
           <components>
+            <component
+              refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Check data exist in Nuoc_NDS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Nuoc]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Nuoc]) [refTable]
+where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Ma" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaNuoc" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TenNuoc" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="NguonDuLieu" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TrangThai" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayTao" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayCapNhat" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Load Nuoc_Jupiter_Stage.Outputs[OLE DB Source Output].Columns[MaNuoc]};#{Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Inputs[Lookup Input].Columns[MaNuoc]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="MaNuoc"
+                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Load Nuoc_Jupiter_Stage.Outputs[OLE DB Source Output].Columns[MaNuoc]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">MaNuoc</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Inputs[Lookup Input].Columns[NguonDuLieu]"
+                      cachedDataType="i4"
+                      cachedName="NguonDuLieu"
+                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">NguonDuLieu</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup Match Output].Columns[Ma]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup Match Output].Columns[Ma]"
+                      name="Ma"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Ma</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
             <component
               refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NgayCapNhap"
               componentClassID="Microsoft.DerivedColumn"
@@ -671,181 +846,6 @@
               </outputs>
             </component>
             <component
-              refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS"
-              componentClassID="Microsoft.Lookup"
-              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
-              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Lookup Ma In Nuoc_NDS"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="Specifies the SQL statement that generates the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[Nuoc]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
-                  expressionType="Notify"
-                  name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[Nuoc]) [refTable]
-where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the type of connection used to access the reference dataset."
-                  name="ConnectionType"
-                  typeConverter="LookupConnectionType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the cache type of the lookup table."
-                  name="CacheType"
-                  typeConverter="CacheType">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
-                  name="NoMatchBehavior"
-                  typeConverter="LookupNoMatchBehavior">1</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
-                  name="NoMatchCachePercentage">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
-                  name="MaxMemoryUsage">25</property>
-                <property
-                  dataType="System.Int64"
-                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
-                  name="MaxMemoryUsage64">25</property>
-                <property
-                  dataType="System.String"
-                  description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Ma" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaNuoc" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TenNuoc" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="NguonDuLieu" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TrangThai" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayTao" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayCapNhat" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
-                <property
-                  containsID="true"
-                  dataType="System.String"
-                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Load Nuoc_Jupiter_Stage.Outputs[OLE DB Source Output].Columns[MaNuoc]};#{Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]};</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
-                  name="TreatDuplicateKeysAsError">false</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
-                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
-                  description="Connection manager used to access lookup data."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Inputs[Lookup Input]"
-                  name="Lookup Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Inputs[Lookup Input].Columns[MaNuoc]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="4"
-                      cachedName="MaNuoc"
-                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Load Nuoc_Jupiter_Stage.Outputs[OLE DB Source Output].Columns[MaNuoc]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">MaNuoc</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Inputs[Lookup Input].Columns[NguonDuLieu]"
-                      cachedDataType="i4"
-                      cachedName="NguonDuLieu"
-                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">NguonDuLieu</property>
-                        <property
-                          dataType="System.Null"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn" />
-                      </properties>
-                    </inputColumn>
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup Match Output]"
-                  errorOrTruncationOperation="Lookup"
-                  exclusionGroup="1"
-                  name="Lookup Match Output"
-                  synchronousInputId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup Match Output].Columns[Ma]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup Match Output].Columns[Ma]"
-                      name="Ma"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">Ma</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup No Match Output]"
-                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
-                  exclusionGroup="1"
-                  name="Lookup No Match Output"
-                  synchronousInputId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Inputs[Lookup Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Lookup Error Output"
-                  synchronousInputId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Update Nuoc_NDS"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
@@ -863,7 +863,7 @@ where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Update Nuoc set [TenNuoc] =?, [TrangThai] =?, [NgayCapNhat] = ? where Ma = ? and NguonDuLieu = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Update Nuoc set [TenNuoc] =?, [TrangThai] =?, [NgayCapNhat] = ? where MaNuoc = ? and NguonDuLieu = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -906,17 +906,19 @@ where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
                       externalMetadataColumnId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Update Nuoc_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
                       lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]" />
                     <inputColumn
-                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Update Nuoc_NDS.Inputs[OLE DB Command Input].Columns[Ma]"
-                      cachedDataType="i4"
-                      cachedName="Ma"
-                      externalMetadataColumnId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Update Nuoc_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup Match Output].Columns[Ma]" />
-                    <inputColumn
                       refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Update Nuoc_NDS.Inputs[OLE DB Command Input].Columns[NguonDuLieu]"
                       cachedDataType="i4"
                       cachedName="NguonDuLieu"
                       externalMetadataColumnId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Update Nuoc_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
                       lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]" />
+                    <inputColumn
+                      refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Update Nuoc_NDS.Inputs[OLE DB Command Input].Columns[MaNuoc]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="MaNuoc"
+                      externalMetadataColumnId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Update Nuoc_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Load Nuoc_Jupiter_Stage.Outputs[OLE DB Source Output].Columns[MaNuoc]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -957,7 +959,9 @@ where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Update Nuoc_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      dataType="i4"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
                       name="Param_3">
                       <properties>
                         <property
@@ -1026,19 +1030,19 @@ where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
               startId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NgayCapNhap.Outputs[Derived Column Output]" />
             <path
               refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS.Paths[Derived Column Output2]"
-              endId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Inputs[Lookup Input]"
+              endId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Inputs[Lookup Input]"
               name="Derived Column Output"
               startId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output]" />
             <path
               refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS.Paths[Lookup Match Output]"
               endId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NgayCapNhap.Inputs[Derived Column Input]"
               name="Lookup Match Output"
-              startId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup Match Output]" />
+              startId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS.Paths[Lookup No Match Output]"
               endId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NgayTao NgayCapNhap.Inputs[Derived Column Input]"
               name="Lookup No Match Output"
-              startId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS.Outputs[Lookup No Match Output]" />
+              startId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS.Paths[OLE DB Source Output]"
               endId="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NguonDuLieu Column.Inputs[Derived Column Input]"
@@ -1074,14 +1078,14 @@ where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
         <NodeLayout
           Size="149,42"
           Id="Package\GET SourceId"
-          TopLeft="235.5,12.5" />
+          TopLeft="619.5,185.5" />
         <NodeLayout
           Size="308,42"
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS"
-          TopLeft="156.5,87.5" />
+          TopLeft="540.5,260.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="310.25,54.5">
+          TopLeft="694.25,227.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1110,36 +1114,36 @@ where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="203,42"
-          Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS"
-          TopLeft="220,283" />
+          Size="230,42"
+          Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS"
+          TopLeft="584,294" />
         <NodeLayout
           Size="311,42"
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Insert new Nuoc_Jupiter_Stage into Nuoc_NDS"
-          TopLeft="357.25,450.722433460076" />
+          TopLeft="721.25,461.722433460076" />
         <NodeLayout
           Size="172,42"
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Update Nuoc_NDS"
-          TopLeft="77,449" />
+          TopLeft="441,460" />
         <NodeLayout
           Size="240,42"
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NgayTao NgayCapNhap"
-          TopLeft="390,381" />
+          TopLeft="754,392" />
         <NodeLayout
           Size="228,42"
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NguonDuLieu Column"
-          TopLeft="219,192" />
+          TopLeft="583,203" />
         <NodeLayout
           Size="192,42"
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Derived NgayCapNhap"
-          TopLeft="60,376" />
+          TopLeft="424,387" />
         <NodeLayout
           Size="206,42"
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Load Nuoc_Jupiter_Stage"
-          TopLeft="229,96" />
+          TopLeft="593,107" />
         <EdgeLayout
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS.Paths[OLE DB Source Output]"
-          TopLeft="332.5,138">
+          TopLeft="696.5,149">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1161,102 +1165,90 @@ where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS.Paths[Lookup No Match Output]"
-          TopLeft="354,325">
+          TopLeft="736,336">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="156,56"
+              EndConnector="138,56"
               Start="0,0"
-              End="156,48.5">
+              End="138,48.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.6627565982405" />
+                    End="0,18.6321243523316" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,18.6627565982405"
-                    Point2="0,22.6627565982405"
-                    Point3="4,22.6627565982405" />
+                    Point1="0,18.6321243523316"
+                    Point2="0,22.6321243523316"
+                    Point3="4,22.6321243523316" />
                   <mssgle:LineSegment
-                    End="152,22.6627565982405" />
+                    End="134,22.6321243523316" />
                   <mssgle:CubicBezierSegment
-                    Point1="152,22.6627565982405"
-                    Point2="156,22.6627565982405"
-                    Point3="156,26.6627565982405" />
+                    Point1="134,22.6321243523316"
+                    Point2="138,22.6321243523316"
+                    Point3="138,26.6321243523316" />
                   <mssgle:LineSegment
-                    End="156,48.5" />
+                    End="138,48.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="22.19361328125,27.6627565982405,111.6127734375,11.609375"
+              BoundingBox="13.19361328125,27.6321243523316,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS.Paths[Lookup Match Output]"
-          TopLeft="289,325">
+          TopLeft="662,336">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-133,51"
+              EndConnector="-142,51"
               Start="0,0"
-              End="-133,43.5">
+              End="-142,43.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.6392961876833" />
+                    End="0,16.6113989637306" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,16.6392961876833"
-                    Point2="0,20.6392961876833"
-                    Point3="-4,20.6392961876833" />
+                    Point1="0,16.6113989637306"
+                    Point2="0,20.6113989637306"
+                    Point3="-4,20.6113989637306" />
                   <mssgle:LineSegment
-                    End="-129,20.6392961876833" />
+                    End="-138,20.6113989637306" />
                   <mssgle:CubicBezierSegment
-                    Point1="-129,20.6392961876833"
-                    Point2="-133,20.6392961876833"
-                    Point3="-133,24.6392961876833" />
+                    Point1="-138,20.6113989637306"
+                    Point2="-142,20.6113989637306"
+                    Point3="-142,24.6113989637306" />
                   <mssgle:LineSegment
-                    End="-133,43.5" />
+                    End="-142,43.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-114.69138671875,25.6392961876833,96.3827734375,11.609375"
+              BoundingBox="-119.19138671875,25.6113989637306,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS.Paths[Derived Column Output2]"
-          TopLeft="333,234">
+          TopLeft="698,245">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-11.5,49"
+              EndConnector="0,49"
               Start="0,0"
-              End="-11.5,41.5">
+              End="0,41.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.5"
-                    Point2="0,24.5"
-                    Point3="-4,24.5" />
-                  <mssgle:LineSegment
-                    End="-7.5,24.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-7.5,24.5"
-                    Point2="-11.5,24.5"
-                    Point3="-11.5,28.5" />
-                  <mssgle:LineSegment
-                    End="-11.5,41.5" />
+                    End="0,41.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1267,7 +1259,7 @@ where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS.Paths[Derived Column Output1]"
-          TopLeft="159.5,418">
+          TopLeft="523.5,429">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1289,7 +1281,7 @@ where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS.Paths[Derived Column Output]"
-          TopLeft="511.375,423">
+          TopLeft="875.375,434">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1313,7 +1305,7 @@ where [refTable].[MaNuoc] = ? and [refTable].[NguonDuLieu] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Lookup Ma In Nuoc_NDS">
+    design-time-name="Package\Import from Nuoc_Jupiter_Stage to Nuoc_NDS\Check data exist in Nuoc_NDS">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
