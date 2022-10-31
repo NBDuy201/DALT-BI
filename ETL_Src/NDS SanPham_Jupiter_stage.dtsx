@@ -1,0 +1,1736 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/31/2022 6:38:24 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-Q336DMP"
+  DTS:CreatorName="DESKTOP-Q336DMP\ASUS"
+  DTS:DTSID="{1BD874EF-8A70-44A6-91D2-062E6B554E5F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.845.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="NDS SanPham_Jupiter_stage"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{EB7F9036-1782-4302-A950-F98AE5630C94}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.METADATA]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C1013BEA-9F40-42BB-A7B1-957AB415C0E9}"
+      DTS:ObjectName="LocalHost.METADATA">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=METADATA;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{C1013BEA-9F40-42BB-A7B1-957AB415C0E9}LocalHost.METADATA;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.NDS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D580925D-663D-40AE-B78D-80AAFB1F32C0}"
+      DTS:ObjectName="LocalHost.NDS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=NDS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{D580925D-663D-40AE-B78D-80AAFB1F32C0}LocalHost.NDS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.Stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8FE93C66-A16E-4932-9070-32424905B40E}"
+      DTS:ObjectName="LocalHost.Stage">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=Stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{8FE93C66-A16E-4932-9070-32424905B40E}LocalHost.Stage;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E47EB883-6416-4BF2-B1D4-94029A0AA990}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Execute from LoaiSanPham_Jupiter_Stage to LoaiSanPham_NDS"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{833003B1-B6A6-4B6C-96C9-5BAB108CDF5A}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute from LoaiSanPham_Jupiter_Stage to LoaiSanPham_NDS"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>NDS LoaiSanPham_Jupiter_stage.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\GET SourceId"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F98792DE-8A91-476D-A52E-A00AAB7DE7F4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GET SourceId"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1013BEA-9F40-42BB-A7B1-957AB415C0E9}"
+          SQLTask:SqlStatementSource="select ID as SourceID from Data_Flow where Tenbang ='jupiter'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="SourceId"
+            SQLTask:DtsVariableName="User::SourceID" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6C18B4A8-4253-4C9E-9C72-5AF7C066CEC6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add NguonDuLieu Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]"
+                      name="NguonDuLieu"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::SourceID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::SourceID]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Check data exist in SanPham_NDS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[SanPham]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[SanPham]) [refTable]
+where [refTable].[MaSP] = ? and [refTable].[NguonDuLieu] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Ma" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaSP" dataType="DT_STR" length="4" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TenSP" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="GiaSP" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LoaiSP" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NguonDuLieu" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TrangThai" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayTao" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayCapNhat" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[MaSP]};#{Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Inputs[Lookup Input].Columns[NguonDuLieu]"
+                      cachedDataType="wstr"
+                      cachedName="NguonDuLieu"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">NguonDuLieu</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Inputs[Lookup Input].Columns[MaSP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="MaSP"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[MaSP]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">MaSP</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup Match Output].Columns[Ma]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup Match Output].Columns[Ma]"
+                      name="Ma"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Ma</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived NgayCapNhap"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]"
+                      name="NgayCapNhap"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived NgayTao NgayCapNhap"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]"
+                      name="NgayCapNhap"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayTao]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayTao]"
+                      name="NgayTao"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[SanPham]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].Columns[TrangThai]"
+                      cachedDataType="i4"
+                      cachedName="TrangThai"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[TrangThai]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[TrangThai]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].Columns[NguonDuLieu]"
+                      cachedDataType="wstr"
+                      cachedName="NguonDuLieu"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NguonDuLieu]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].Columns[NgayTao]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="NgayTao"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NgayTao]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayTao]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].Columns[NgayCapNhap]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="NgayCapNhap"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NgayCapNhat]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].Columns[MaSP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="MaSP"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[MaSP]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[MaSP]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].Columns[TenSP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TenSP"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[TenSP]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[TenSP]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].Columns[GiaSP]"
+                      cachedDataType="i4"
+                      cachedName="GiaSP"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[GiaSP]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[GiaSP]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].Columns[Ma]"
+                      cachedDataType="i4"
+                      cachedName="Ma"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[LoaiSP]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Match Output].Columns[Ma]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[Ma]"
+                      dataType="i4"
+                      name="Ma" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NguonDuLieu]"
+                      dataType="i4"
+                      name="NguonDuLieu" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[TrangThai]"
+                      dataType="i4"
+                      name="TrangThai" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NgayTao]"
+                      dataType="dbTimeStamp"
+                      name="NgayTao" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NgayCapNhat]"
+                      dataType="dbTimeStamp"
+                      name="NgayCapNhat" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[MaSP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="MaSP" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[TenSP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TenSP" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[GiaSP]"
+                      dataType="i4"
+                      name="GiaSP" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input].ExternalColumns[LoaiSP]"
+                      dataType="i4"
+                      name="LoaiSP" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Load SanPham_Jupiter_stage"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[SanPham_Jupiter_stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.Stage]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.Stage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[TrangThai]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].ExternalColumns[TrangThai]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[TrangThai]"
+                      name="TrangThai"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[MaSP]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].ExternalColumns[MaSP]"
+                      length="4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[MaSP]"
+                      name="MaSP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[TenSP]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].ExternalColumns[TenSP]"
+                      length="50"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[TenSP]"
+                      name="TenSP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[GiaSP]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].ExternalColumns[GiaSP]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[GiaSP]"
+                      name="GiaSP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[LoaiSP]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].ExternalColumns[LoaiSP]"
+                      length="4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[LoaiSP]"
+                      name="LoaiSP"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].ExternalColumns[TrangThai]"
+                      dataType="i4"
+                      name="TrangThai" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].ExternalColumns[MaSP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="MaSP" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].ExternalColumns[TenSP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TenSP" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].ExternalColumns[GiaSP]"
+                      dataType="i4"
+                      name="GiaSP" />
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].ExternalColumns[LoaiSP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="LoaiSP" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[MaSP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[MaSP]"
+                      name="MaSP" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[TenSP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[TenSP]"
+                      name="TenSP" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[GiaSP]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[GiaSP]"
+                      name="GiaSP" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[LoaiSP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[LoaiSP]"
+                      name="LoaiSP" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[TrangThai]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[TrangThai]"
+                      name="TrangThai" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup MaLoaiSP in LoaiSanPham_NDS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[LoaiSanPham]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[LoaiSanPham]) [refTable]
+where [refTable].[MaLoaiSP] = ? and [refTable].[NguonDuLieu] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Ma" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaLoaiSP" dataType="DT_STR" length="4" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TenLoaiSP" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="NguonDuLieu" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TrangThai" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayTao" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayCapNhat" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[LoaiSP]};#{Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Inputs[Lookup Input].Columns[NguonDuLieu]"
+                      cachedDataType="wstr"
+                      cachedName="NguonDuLieu"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">NguonDuLieu</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Inputs[Lookup Input].Columns[LoaiSP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="LoaiSP"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[LoaiSP]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">MaLoaiSP</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Match Output].Columns[Ma]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Match Output].Columns[Ma]"
+                      name="Ma"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Ma</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update SanPham_NDS"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Update SanPham set TenSP =?, GiaSP = ?, LoaiSP = ?, [TrangThai] =?, [NgayCapNhat] = ? where MaSP = ? and NguonDuLieu = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].Columns[TenSP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TenSP"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[TenSP]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].Columns[GiaSP]"
+                      cachedDataType="i4"
+                      cachedName="GiaSP"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[GiaSP]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].Columns[Ma]"
+                      cachedDataType="i4"
+                      cachedName="Ma"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Match Output].Columns[Ma]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].Columns[TrangThai]"
+                      cachedDataType="i4"
+                      cachedName="TrangThai"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[TrangThai]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].Columns[NgayCapNhap]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="NgayCapNhap"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].Columns[MaSP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="MaSP"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output].Columns[MaSP]" />
+                    <inputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].Columns[NguonDuLieu]"
+                      cachedDataType="i4"
+                      cachedName="NguonDuLieu"
+                      externalMetadataColumnId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="i4"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="dbTimeStamp"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="i4"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Derived Column Output]"
+              endId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Derived Column Output1]"
+              endId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Derived Column Output2]"
+              endId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Lookup Match Output]"
+              endId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Lookup Match Output1]"
+              endId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Lookup No Match Output]"
+              endId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap.Inputs[Derived Column Input]"
+              name="Lookup No Match Output"
+              startId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[OLE DB Source Output]"
+              endId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{DFF7E362-465E-4962-9CAE-B69B3B0FFCB7}"
+      DTS:From="Package\GET SourceId"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute from LoaiSanPham_Jupiter_Stage to LoaiSanPham_NDS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{24759F23-6844-406E-BCA5-7E156877C9F0}"
+      DTS:From="Package\Execute from LoaiSanPham_Jupiter_Stage to LoaiSanPham_NDS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\GET SourceId"
+          TopLeft="606,142" />
+        <NodeLayout
+          Size="391,42"
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS"
+          TopLeft="489,353" />
+        <NodeLayout
+          Size="403,42"
+          Id="Package\Execute from LoaiSanPham_Jupiter_Stage to LoaiSanPham_NDS"
+          TopLeft="480,243" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="681,184">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="683,285">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="240,42"
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap"
+          TopLeft="772.5,485.5" />
+        <NodeLayout
+          Size="252,42"
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS"
+          TopLeft="574.5,396.5" />
+        <NodeLayout
+          Size="398,42"
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS"
+          TopLeft="691.5,584.328903654485" />
+        <NodeLayout
+          Size="227,42"
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage"
+          TopLeft="580.5,118.5" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap"
+          TopLeft="405.5,484.5" />
+        <NodeLayout
+          Size="210,42"
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column"
+          TopLeft="593.5,207.5" />
+        <EdgeLayout
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[OLE DB Source Output]"
+          TopLeft="696.25,160.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Lookup No Match Output]"
+          TopLeft="741.166666666667,438.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="151.333333333333,47"
+              Start="0,0"
+              End="151.333333333333,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.9779179810726" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.9779179810726"
+                    Point2="0,18.9779179810726"
+                    Point3="4,18.9779179810726" />
+                  <mssgle:LineSegment
+                    End="147.333333333333,18.9779179810726" />
+                  <mssgle:CubicBezierSegment
+                    Point1="147.333333333333,18.9779179810726"
+                    Point2="151.333333333333,18.9779179810726"
+                    Point3="151.333333333333,22.9779179810726" />
+                  <mssgle:LineSegment
+                    End="151.333333333333,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="19.8602799479167,23.9779179810726,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Lookup Match Output]"
+          TopLeft="659.833333333333,438.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-158.333333333333,46"
+              Start="0,0"
+              End="-158.333333333333,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.5741324921136" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.5741324921136"
+                    Point2="0,18.5741324921136"
+                    Point3="-4,18.5741324921136" />
+                  <mssgle:LineSegment
+                    End="-154.333333333333,18.5741324921136" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-154.333333333333,18.5741324921136"
+                    Point2="-158.333333333333,18.5741324921136"
+                    Point3="-158.333333333333,22.5741324921136" />
+                  <mssgle:LineSegment
+                    End="-158.333333333333,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-127.358053385417,23.5741324921136,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Derived Column Output]"
+          TopLeft="891.5,527.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.828903654485"
+              Start="0,0"
+              End="0,49.328903654485">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.328903654485" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="282,42"
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS"
+          TopLeft="561.5,297.5" />
+        <EdgeLayout
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Derived Column Output1]"
+          TopLeft="700.5,249.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48"
+              Start="0,0"
+              End="0,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Lookup Match Output1]"
+          TopLeft="701.5,339.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,18.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update SanPham_NDS"
+          TopLeft="406,571" />
+        <EdgeLayout
+          Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Derived Column Output2]"
+          TopLeft="502.5,526.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44.5"
+              Start="0,0"
+              End="0,37">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in SanPham_NDS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[SanPham]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load SanPham_Jupiter_stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Lookup MaLoaiSP in LoaiSanPham_NDS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[LoaiSanPham]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
