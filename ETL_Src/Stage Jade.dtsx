@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Stage Jade"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{6CD5B8F3-E5A3-4BA1-A837-2CB374BEEAD0}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{E9D2A10B-A302-4448-9614-A646CCBEB8C5}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1470,34 +1470,34 @@ WHERE        (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         <NodeLayout
           Size="219,42"
           Id="Package\ChiTietHoaDon_Stage_Jage"
-          TopLeft="23.5,366" />
+          TopLeft="211.5,373" />
         <NodeLayout
           Size="127,42"
           Id="Package\GET CET"
-          TopLeft="398.25,190.75" />
+          TopLeft="586.25,197.75" />
         <NodeLayout
           Size="132,42"
           Id="Package\GET LSET"
-          TopLeft="401.75,264.25" />
+          TopLeft="589.75,271.25" />
         <NodeLayout
           Size="184,42"
           Id="Package\HoaDon_Stage_Jade"
-          TopLeft="720.5,374.25" />
+          TopLeft="908.5,381.25" />
         <NodeLayout
           Size="201,42"
           Id="Package\KhachHang_Stage_Jade"
-          TopLeft="369.75,378.25" />
+          TopLeft="557.75,385.25" />
         <NodeLayout
           Size="179,42"
           Id="Package\TRUNCATE STAGE"
-          TopLeft="371.25,122.5" />
+          TopLeft="559.25,129.5" />
         <NodeLayout
           Size="154,42"
           Id="Package\UPDATE LSET"
-          TopLeft="390.75,535.75" />
+          TopLeft="578.75,542.75" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="469,306.25">
+          TopLeft="657,313.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1519,7 +1519,7 @@ WHERE        (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="498.75,306.25">
+          TopLeft="686.75,313.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1553,7 +1553,7 @@ WHERE        (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="461.25,164.5">
+          TopLeft="649.25,171.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1575,7 +1575,7 @@ WHERE        (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="464.75,232.75">
+          TopLeft="652.75,239.75">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1597,7 +1597,7 @@ WHERE        (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="436.75,306.25">
+          TopLeft="624.75,313.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1631,7 +1631,7 @@ WHERE        (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="133,408">
+          TopLeft="321,415">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1665,7 +1665,7 @@ WHERE        (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="469,420.25">
+          TopLeft="657,427.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1687,7 +1687,7 @@ WHERE        (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="812.5,416.25">
+          TopLeft="1000.5,423.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"

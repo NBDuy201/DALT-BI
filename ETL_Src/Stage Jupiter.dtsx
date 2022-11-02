@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="45"
-  DTS:VersionGUID="{D54EB008-DDFC-4B38-9803-970BFE9950DA}">
+  DTS:VersionBuild="48"
+  DTS:VersionGUID="{73CA92D6-FF2E-4B40-9080-A026166B5168}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,7 +25,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=ASUS-VIVOBOOK-T\MSSQLSERVER2019;Initial Catalog=Jupiter;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{21850818-EE5F-43D0-B435-E3E1F7E3D7D1}ASUS-VIVOBOOK-T\MSSQLSERVER2019.Jupiter;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=Jupiter;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{21850818-EE5F-43D0-B435-E3E1F7E3D7D1}ASUS-VIVOBOOK-T\MSSQLSERVER2019.Jupiter;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -37,7 +37,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=ASUS-VIVOBOOK-T\MSSQLSERVER2019;Initial Catalog=METADATA;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{1AA7AD33-F2AB-49D5-9D4A-128F1EA50A1A}ASUS-VIVOBOOK-T\MSSQLSERVER2019.METADATA;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=METADATA;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{1AA7AD33-F2AB-49D5-9D4A-128F1EA50A1A}ASUS-VIVOBOOK-T\MSSQLSERVER2019.METADATA;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -49,7 +49,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=ASUS-VIVOBOOK-T\MSSQLSERVER2019;Initial Catalog=Stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{0C78E94D-A790-4171-A814-5051405AE115}ASUS-VIVOBOOK-T\MSSQLSERVER2019.Stage;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=Stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{0C78E94D-A790-4171-A814-5051405AE115}ASUS-VIVOBOOK-T\MSSQLSERVER2019.Stage;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -2106,6 +2106,22 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\Get LSET" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
+      DTS:CreationName=""
+      DTS:DTSID="{E4544865-CED3-4ACC-8437-095C47EE3434}"
+      DTS:From="Package\Nuoc_Jupiter_Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 10"
+      DTS:To="Package\Update LSET" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{15010D68-2EBA-4085-A3C6-F31371F55544}"
+      DTS:From="Package\SanPham_Jupiter_Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 11"
+      DTS:To="Package\Update LSET" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
       DTS:DTSID="{B3083E09-561B-41BC-A8C0-DD5D91A86FCD}"
@@ -2153,6 +2169,22 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 7"
       DTS:To="Package\Update LSET" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{45561E9B-0979-43C1-BDA1-FB0562055F3C}"
+      DTS:From="Package\CuaHang_Jupiter_Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Update LSET" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{6521F37D-FEEF-4468-92F4-8A5C293779FF}"
+      DTS:From="Package\LoaiCuaHang_Jupiter_Stage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Update LSET" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -2167,44 +2199,44 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="192,41.6"
+          Size="192,42"
           Id="Package\CuaHang_Jupiter_Stage"
-          TopLeft="19.2129621995085,334.268521175046" />
+          TopLeft="105.212962199508,437.268521175046" />
         <NodeLayout
-          Size="129.6,41.6"
+          Size="130,42"
           Id="Package\Get CET"
-          TopLeft="543.333311743208,93.6962970409274" />
+          TopLeft="629.333311743208,196.696297040927" />
         <NodeLayout
-          Size="124,41.6"
+          Size="124,42"
           Id="Package\Get LSET"
-          TopLeft="544.907385754733,184.600001467069" />
+          TopLeft="630.907385754733,287.600001467069" />
         <NodeLayout
-          Size="219.2,41.6"
+          Size="219,42"
           Id="Package\LoaiCuaHang_Jupiter_Stage"
-          TopLeft="247.800916079202,332.944447090449" />
+          TopLeft="333.800916079202,435.944447090449" />
         <NodeLayout
-          Size="213.6,41.6"
+          Size="214,42"
           Id="Package\LoaiSanPham_Jupiter_Stage"
-          TopLeft="498.032387617378,332.546298797852" />
+          TopLeft="584.032387617378,435.546298797852" />
         <NodeLayout
-          Size="172.8,41.6"
+          Size="173,42"
           Id="Package\Nuoc_Jupiter_Stage"
-          TopLeft="753.240710809645,333.379632102487" />
+          TopLeft="839.240710809645,436.379632102487" />
         <NodeLayout
-          Size="193.6,41.6"
+          Size="194,42"
           Id="Package\SanPham_Jupiter_Stage"
-          TopLeft="971.527739172734,331.212965418601" />
+          TopLeft="1057.52773917273,434.212965418601" />
         <NodeLayout
-          Size="149.6,41.6"
+          Size="150,42"
           Id="Package\Truncate Stage"
-          TopLeft="532.407386251439,1.73333334710865" />
+          TopLeft="618.407386251439,104.733333347109" />
         <NodeLayout
-          Size="140.8,41.6"
+          Size="141,42"
           Id="Package\Update LSET"
-          TopLeft="535.41664539112,438.750003486872" />
+          TopLeft="621.41664539112,541.750003486872" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="607.670348997323,43.3333333471086">
+          TopLeft="693.670348997323,146.333333347109">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2226,7 +2258,7 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="607.520348748971,135.296297040927">
+          TopLeft="693.520348748971,238.296297040927">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2248,7 +2280,7 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="568.240719088067,226.200001467069">
+          TopLeft="654.240719088067,329.200001467069">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -2282,13 +2314,13 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="587.5740524214,226.200001467069">
+          TopLeft="673.5740524214,329.200001467069">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
               EndConnector="-230.173136342198,106.74444562338"
               Start="0,0"
-              End="-230.173136342198,99.2444456233802">
+              End="-230.173136342198,99.24444562338">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2305,7 +2337,7 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
                     Point2="-230.173136342198,43.513659362397"
                     Point3="-230.173136342198,47.513659362397" />
                   <mssgle:LineSegment
-                    End="-230.173136342198,99.2444456233802" />
+                    End="-230.173136342198,99.24444562338" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2316,18 +2348,18 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="605.869886686056,226.200001467069">
+          TopLeft="691.869886686056,329.200001467069">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
               EndConnector="0,106.346297330783"
               Start="0,0"
-              End="0,98.8462973307826">
+              End="0,98.846297330783">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,98.8462973307826" />
+                    End="0,98.846297330783" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2338,13 +2370,13 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="626.240719088067,226.200001467069">
+          TopLeft="712.240719088067,329.200001467069">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
               EndConnector="213.399991721578,107.179630635418"
               Start="0,0"
-              End="213.399991721578,99.6796306354177">
+              End="213.399991721578,99.679630635418">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2361,7 +2393,7 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
                     Point2="213.399991721578,43.6910596220811"
                     Point3="213.399991721578,47.6910596220811" />
                   <mssgle:LineSegment
-                    End="213.399991721578,99.6796306354177" />
+                    End="213.399991721578,99.679630635418" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2372,13 +2404,13 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="645.5740524214,226.200001467069">
+          TopLeft="731.5740524214,329.200001467069">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
               EndConnector="422.753686751334,105.012963951532"
               Start="0,0"
-              End="422.753686751334,97.5129639515318">
+              End="422.753686751334,97.512963951532">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -2395,7 +2427,7 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
                     Point2="422.753686751334,28.714482330497"
                     Point3="422.753686751334,32.714482330497" />
                   <mssgle:LineSegment
-                    End="422.753686751334,97.5129639515318" />
+                    End="422.753686751334,97.512963951532" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2406,18 +2438,154 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="605.324516504249,374.146298797852">
+          TopLeft="691.324516504249,477.146298797852">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,64.60370468902"
+              EndConnector="0,64.6037046890199"
               Start="0,0"
-              End="0,57.10370468902">
+              End="0,57.1037046890199">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,57.10370468902" />
+                    End="0,57.1037046890199" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="201.212962199508,479.268521175046">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="468.537016524945,62.481482311826"
+              Start="0,0"
+              End="468.537016524945,54.981482311826">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.0682566871001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.0682566871001"
+                    Point2="0,37.0682566871001"
+                    Point3="4,37.0682566871001" />
+                  <mssgle:LineSegment
+                    End="464.537016524945,37.0682566871001" />
+                  <mssgle:CubicBezierSegment
+                    Point1="464.537016524945,37.0682566871001"
+                    Point2="468.537016524945,37.0682566871001"
+                    Point3="468.537016524945,41.0682566871001" />
+                  <mssgle:LineSegment
+                    End="468.537016524945,54.981482311826" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="443.300916079202,477.944447090449">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="248.615729311918,63.805556396423"
+              Start="0,0"
+              End="248.615729311918,56.305556396423">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.9027781982115" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.9027781982115"
+                    Point2="0,31.9027781982115"
+                    Point3="4,31.9027781982115" />
+                  <mssgle:LineSegment
+                    End="244.615729311918,31.9027781982115" />
+                  <mssgle:CubicBezierSegment
+                    Point1="244.615729311918,31.9027781982115"
+                    Point2="248.615729311918,31.9027781982115"
+                    Point3="248.615729311918,35.9027781982115" />
+                  <mssgle:LineSegment
+                    End="248.615729311918,56.305556396423" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 10]"
+          TopLeft="925.740710809645,478.379632102487">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-193.924065418525,63.370371384385"
+              Start="0,0"
+              End="-193.924065418525,55.870371384385">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.1900215885177" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.1900215885177"
+                    Point2="0,44.1900215885177"
+                    Point3="-4,44.1900215885177" />
+                  <mssgle:LineSegment
+                    End="-189.924065418525,44.1900215885177" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-189.924065418525,44.1900215885177"
+                    Point2="-193.924065418525,44.1900215885177"
+                    Point3="-193.924065418525,48.1900215885177" />
+                  <mssgle:LineSegment
+                    End="-193.924065418525,55.870371384385" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="1154.52773917273,476.212965418601">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-418.277760448281,65.5370380682709"
+              Start="0,0"
+              End="-418.277760448281,58.0370380682709">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.7968398325493" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.7968398325493"
+                    Point2="0,47.7968398325493"
+                    Point3="-4,47.7968398325493" />
+                  <mssgle:LineSegment
+                    End="-414.277760448281,47.7968398325493" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-414.277760448281,47.7968398325493"
+                    Point2="-418.277760448281,47.7968398325493"
+                    Point3="-418.277760448281,51.7968398325493" />
+                  <mssgle:LineSegment
+                    End="-418.277760448281,58.0370380682709" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -2433,13 +2601,13 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
     design-time-name="Package\CuaHang_Jupiter_Stage">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="192,41.6"
+          Size="192,42"
           Id="Package\CuaHang_Jupiter_Stage\CuaHang_Jupiter_Stage"
           TopLeft="511,224" />
         <NodeLayout
-          Size="159.2,41.6"
+          Size="159,42"
           Id="Package\CuaHang_Jupiter_Stage\CuaHang_Jupiter"
           TopLeft="525,82" />
         <EdgeLayout
@@ -2461,9 +2629,7 @@ WHERE (NgayTao &lt; ? AND NgayTao &gt;= ?) OR
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
