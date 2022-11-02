@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="15"
-  DTS:VersionGUID="{AD1A13C9-D5C0-41C0-99D1-DB701B91776A}">
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{EB0790A9-8B5C-4A18-BEAB-B7CA9F619B5B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -966,7 +966,7 @@ where [refTable].[Ma] = ?</property>
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[CuaHang] SET [TenCH] = ? WHERE [MaCH] = ? AND [NguonDuLieu] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[CuaHang] SET [Nuoc] = ?,[TenCH] = ?,[TenLoaiCH] = ?,[TrangThai] = ? WHERE [MaCH] = ? AND [NguonDuLieu] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -994,43 +994,61 @@ where [refTable].[Ma] = ?</property>
                       cachedDataType="str"
                       cachedLength="4"
                       cachedName="MaCH"
-                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
                       lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[MaCH]" />
                     <inputColumn
                       refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[NguonDuLieu]"
                       cachedDataType="i4"
                       cachedName="NguonDuLieu"
-                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
                       lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[NguonDuLieu]" />
+                    <inputColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[Nuoc]"
+                      cachedDataType="i4"
+                      cachedName="Nuoc"
+                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[Nuoc]" />
                     <inputColumn
                       refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[TenCH]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="TenCH"
-                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
                       lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[TenCH]" />
+                    <inputColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[TenLoaiCH_NDS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TenLoaiCH_NDS"
+                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Lookup MaLoaiCuaHang in LoaiCuaHang_NDS.Outputs[Lookup Match Output].Columns[TenLoaiCH_NDS]" />
+                    <inputColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[TrangThai]"
+                      cachedDataType="i4"
+                      cachedName="TrangThai"
+                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[TrangThai]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
                       refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
+                      dataType="i4"
                       name="Param_0">
                       <properties>
                         <property
                           dataType="System.Int32"
                           description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
+                          name="DBParamInfoFlags">81</property>
                       </properties>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
                       codePage="1252"
                       dataType="str"
-                      length="4"
+                      length="50"
                       name="Param_1">
                       <properties>
                         <property
@@ -1041,8 +1059,45 @@ where [refTable].[Ma] = ?</property>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="i4"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
                       name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="i4"
+                      name="Param_5">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -1097,7 +1152,7 @@ where [refTable].[Ma] = ?</property>
                   dataType="System.String"
                   description="Specifies the SELECT statement used to create a schema rowset."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [MaCH], [MaLoaiCH], [NguonDuLieu], [TenCH] FROM [dbo].[CuaHang]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [MaCH], [MaLoaiCH], [NguonDuLieu], [Nuoc], [TenCH], [TenLoaiCH], [TrangThai] FROM [dbo].[CuaHang]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
@@ -1176,6 +1231,32 @@ where [refTable].[Ma] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[NguonDuLieu]"
+                      cachedDataType="i4"
+                      cachedName="NguonDuLieu"
+                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NguonDuLieu]"
+                      lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[NguonDuLieu]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Nuoc]"
+                      cachedDataType="i4"
+                      cachedName="Nuoc"
+                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Nuoc]"
+                      lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[Nuoc]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
                       refId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TenCH]"
                       cachedCodepage="1252"
                       cachedDataType="str"
@@ -1191,16 +1272,31 @@ where [refTable].[Ma] = ?</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[NguonDuLieu]"
-                      cachedDataType="i4"
-                      cachedName="NguonDuLieu"
-                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NguonDuLieu]"
-                      lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[NguonDuLieu]">
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TenLoaiCH_NDS]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TenLoaiCH_NDS"
+                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TenLoaiCH]"
+                      lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Lookup MaLoaiCuaHang in LoaiCuaHang_NDS.Outputs[Lookup Match Output].Columns[TenLoaiCH_NDS]">
                       <properties>
                         <property
                           dataType="System.Int32"
                           name="ColumnType"
-                          typeConverter="ColumnType">1</property>
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[TrangThai]"
+                      cachedDataType="i4"
+                      cachedName="TrangThai"
+                      externalMetadataColumnId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TrangThai]"
+                      lineageId="Package\Import CuaHang_NDS to CuaHang_DDS\Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[TrangThai]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
@@ -1223,11 +1319,25 @@ where [refTable].[Ma] = ?</property>
                       dataType="i4"
                       name="NguonDuLieu" />
                     <externalMetadataColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[Nuoc]"
+                      dataType="i4"
+                      name="Nuoc" />
+                    <externalMetadataColumn
                       refId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TenCH]"
                       codePage="1252"
                       dataType="str"
                       length="50"
                       name="TenCH" />
+                    <externalMetadataColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TenLoaiCH]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TenLoaiCH" />
+                    <externalMetadataColumn
+                      refId="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[TrangThai]"
+                      dataType="i4"
+                      name="TrangThai" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -1468,18 +1578,18 @@ where [refTable].[Ma] = ?</property>
         <NodeLayout
           Size="312,42"
           Id="Package\Import CuaHang_NDS to CuaHang_DDS\Lookup MaLoaiCuaHang in LoaiCuaHang_NDS"
-          TopLeft="537,204.5" />
+          TopLeft="467,198.5" />
         <NodeLayout
           Size="216,42"
           Id="Package\Import CuaHang_NDS to CuaHang_DDS\Slowly Changing Dimension"
-          TopLeft="585,306.5" />
+          TopLeft="515,300.5" />
         <NodeLayout
           Size="182,42"
           Id="Package\Import CuaHang_NDS to CuaHang_DDS\Load CuaHang_NDS"
-          TopLeft="602,102.5" />
+          TopLeft="532,96.4999999999999" />
         <EdgeLayout
           Id="Package\Import CuaHang_NDS to CuaHang_DDS.Paths[OLE DB Source Output]"
-          TopLeft="693,144.5">
+          TopLeft="623,138.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1501,7 +1611,7 @@ where [refTable].[Ma] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import CuaHang_NDS to CuaHang_DDS.Paths[Lookup Match Output]"
-          TopLeft="693,246.5">
+          TopLeft="623,240.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1526,108 +1636,108 @@ where [refTable].[Ma] = ?</property>
         <NodeLayout
           Size="165,42"
           Id="Package\Import CuaHang_NDS to CuaHang_DDS\Insert Destination"
-          TopLeft="307.5,466.5" />
+          TopLeft="308.5,474.5" />
         <EdgeLayout
           Id="Package\Import CuaHang_NDS to CuaHang_DDS.Paths[New Output]"
-          TopLeft="641,348.5">
+          TopLeft="571,342.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-251,118"
+              EndConnector="-180,132"
               Start="0,0"
-              End="-251,110.5">
+              End="-180,124.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.2926829268293" />
+                    End="0,41.0731707317074" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,36.2926829268293"
-                    Point2="0,40.2926829268293"
-                    Point3="-4,40.2926829268293" />
+                    Point1="0,41.0731707317074"
+                    Point2="0,45.0731707317074"
+                    Point3="-4,45.0731707317074" />
                   <mssgle:LineSegment
-                    End="-247,40.2926829268293" />
+                    End="-176,45.0731707317074" />
                   <mssgle:CubicBezierSegment
-                    Point1="-247,40.2926829268293"
-                    Point2="-251,40.2926829268293"
-                    Point3="-251,44.2926829268293" />
+                    Point1="-176,45.0731707317074"
+                    Point2="-180,45.0731707317074"
+                    Point3="-180,49.0731707317074" />
                   <mssgle:LineSegment
-                    End="-251,110.5" />
+                    End="-180,124.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-152.59138671875,45.2926829268293,54.1827734375,11.43359375"
+              BoundingBox="-117.09138671875,50.0731707317074,54.1827734375,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
           Size="173,42"
           Id="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command"
-          TopLeft="603.5,482.5" />
+          TopLeft="534.5,474.5" />
         <EdgeLayout
           Id="Package\Import CuaHang_NDS to CuaHang_DDS.Paths[Inferred Member Updates Output]"
-          TopLeft="691.5,348.5">
+          TopLeft="622,342.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,134"
+              EndConnector="0,132"
               Start="0,0"
-              End="0,126.5">
+              End="0,124.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,126.5" />
+                    End="0,124.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-74.40298828125,57.4208984375,148.8059765625,11.658203125"
+              BoundingBox="-74.40298828125,56.4208984375,148.8059765625,11.658203125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
           Size="182,42"
           Id="Package\Import CuaHang_NDS to CuaHang_DDS\OLE DB Command 1"
-          TopLeft="948,442.5" />
+          TopLeft="892,473.5" />
         <EdgeLayout
           Id="Package\Import CuaHang_NDS to CuaHang_DDS.Paths[Changing Attribute Updates Output]"
-          TopLeft="745,348.5">
+          TopLeft="675,342.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="294,94"
+              EndConnector="308,131"
               Start="0,0"
-              End="294,86.5">
+              End="308,123.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.0975609756098" />
+                    End="0,40.7317073170732" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,28.0975609756098"
-                    Point2="0,32.0975609756098"
-                    Point3="4,32.0975609756098" />
+                    Point1="0,40.7317073170732"
+                    Point2="0,44.7317073170732"
+                    Point3="4,44.7317073170732" />
                   <mssgle:LineSegment
-                    End="290,32.0975609756098" />
+                    End="304,44.7317073170732" />
                   <mssgle:CubicBezierSegment
-                    Point1="290,32.0975609756098"
-                    Point2="294,32.0975609756098"
-                    Point3="294,36.0975609756098" />
+                    Point1="304,44.7317073170732"
+                    Point2="308,44.7317073170732"
+                    Point3="308,48.7317073170732" />
                   <mssgle:LineSegment
-                    End="294,86.5" />
+                    End="308,123.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="68.46609375,37.0975609756098,157.0678125,11.6630859375"
+              BoundingBox="75.46609375,49.7317073170732,157.0678125,11.6630859375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1690,7 +1800,7 @@ where [refTable].[Ma] = ?</property>
       &lt;IdentificationString&gt;Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[Nuoc]&lt;/IdentificationString&gt;
       &lt;ColumnName&gt;Nuoc&lt;/ColumnName&gt;
       &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
     &lt;/InputColumnToDBColumn&gt;
     &lt;InputColumnToDBColumn&gt;
       &lt;IdentificationString&gt;Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[TenCH]&lt;/IdentificationString&gt;
@@ -1702,13 +1812,13 @@ where [refTable].[Ma] = ?</property>
       &lt;IdentificationString&gt;Lookup MaLoaiCuaHang in LoaiCuaHang_NDS.Outputs[Lookup Match Output].Columns[TenLoaiCH_NDS]&lt;/IdentificationString&gt;
       &lt;ColumnName&gt;TenLoaiCH&lt;/ColumnName&gt;
       &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
     &lt;/InputColumnToDBColumn&gt;
     &lt;InputColumnToDBColumn&gt;
       &lt;IdentificationString&gt;Load CuaHang_NDS.Outputs[OLE DB Source Output].Columns[TrangThai]&lt;/IdentificationString&gt;
       &lt;ColumnName&gt;TrangThai&lt;/ColumnName&gt;
       &lt;KeyType&gt;None&lt;/KeyType&gt;
-      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
     &lt;/InputColumnToDBColumn&gt;
   &lt;/InputToColumnsCollection&gt;
   &lt;GeneratedComponentsIdentificationStrings&gt;
