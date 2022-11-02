@@ -1,0 +1,1898 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/1/2022 7:35:12 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-Q336DMP"
+  DTS:CreatorName="DESKTOP-Q336DMP\ASUS"
+  DTS:DTSID="{CED4A426-3B01-4F80-B055-CD11E503A9E8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.845.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{768F023F-DEE3-4B14-BCDA-644ED9B311F3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.METADATA]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{42CD31EC-22A2-4B3E-A635-3D270832C5FF}"
+      DTS:ObjectName="LocalHost.METADATA">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=METADATA;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{42CD31EC-22A2-4B3E-A635-3D270832C5FF}LocalHost.METADATA;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.NDS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7AB55FA0-D90A-45CC-9D43-638B645AF371}"
+      DTS:ObjectName="LocalHost.NDS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=NDS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{7AB55FA0-D90A-45CC-9D43-638B645AF371}LocalHost.NDS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.Stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{67FD5C20-6A2B-421E-A3F9-C5968AEBBE8B}"
+      DTS:ObjectName="LocalHost.Stage">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=Stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{67FD5C20-6A2B-421E-A3F9-C5968AEBBE8B}LocalHost.Stage;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BC084470-013D-42D2-A8A1-2482203B8BB9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceID">
+      <DTS:VariableValue
+        DTS:DataType="19">12</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\GET SourceId"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9c6b0228-e0c2-47ad-a5b2-3f04e717d826}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="GET SourceId"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{42CD31EC-22A2-4B3E-A635-3D270832C5FF}"
+          SQLTask:SqlStatementSource="select ID as SourceID from Data_Flow where Tenbang ='jade'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="SourceId"
+            SQLTask:DtsVariableName="User::SourceID" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{a0484f4d-f7f6-45d2-a0c3-d888a719eccf}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Check MaChiTiet In ChiTietHoaDon_NDS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[ChiTietHoaDon]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[ChiTietHoaDon]) [refTable]
+where [refTable].[MaChiTiet] = ? and [refTable].[NguonDuLieu] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Ma" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaChiTiet" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaHD" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaSP" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NguonDuLieu" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TrangThai" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayTao" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayCapNhat" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaChiTiet]};#{Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Inputs[Lookup Input].Columns[MaChiTiet]"
+                      cachedDataType="i4"
+                      cachedName="MaChiTiet"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaChiTiet]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">MaChiTiet</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Inputs[Lookup Input].Columns[NguonDuLieu]"
+                      cachedDataType="i4"
+                      cachedName="NguonDuLieu"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">NguonDuLieu</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived NgayCapNhap"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]"
+                      name="NgayCapNhap"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived NgayTao NgayCapNhap"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]"
+                      name="NgayCapNhap"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayTao]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayTao]"
+                      name="NgayTao"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived NguonDuLieu Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]"
+                      name="NguonDuLieu"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[User::SourceID]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[User::SourceID]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert new KhachHang_Jade_Stage into KhachHang_NDS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ChiTietHoaDon]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].Columns[TrangThai]"
+                      cachedDataType="i4"
+                      cachedName="TrangThai"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[TrangThai]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[TrangThai]" />
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].Columns[NguonDuLieu]"
+                      cachedDataType="i4"
+                      cachedName="NguonDuLieu"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NguonDuLieu]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]" />
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].Columns[NgayTao]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="NgayTao"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NgayTao]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayTao]" />
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].Columns[NgayCapNhap]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="NgayCapNhap"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NgayCapNhat]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]" />
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].Columns[MaChiTiet]"
+                      cachedDataType="i4"
+                      cachedName="MaChiTiet"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[MaChiTiet]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaChiTiet]" />
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].Columns[MaHD_NDS]"
+                      cachedDataType="i4"
+                      cachedName="MaHD_NDS"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[MaHD]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup Match Output].Columns[MaHD_NDS]" />
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].Columns[MaSP_NDS]"
+                      cachedDataType="i4"
+                      cachedName="MaSP_NDS"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[MaSP]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup Match Output].Columns[MaSP_NDS]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[Ma]"
+                      dataType="i4"
+                      name="Ma" />
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NguonDuLieu]"
+                      dataType="i4"
+                      name="NguonDuLieu" />
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[TrangThai]"
+                      dataType="i4"
+                      name="TrangThai" />
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NgayTao]"
+                      dataType="dbTimeStamp"
+                      name="NgayTao" />
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[NgayCapNhat]"
+                      dataType="dbTimeStamp"
+                      name="NgayCapNhat" />
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[MaChiTiet]"
+                      dataType="i4"
+                      name="MaChiTiet" />
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[MaHD]"
+                      dataType="i4"
+                      name="MaHD" />
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input].ExternalColumns[MaSP]"
+                      dataType="i4"
+                      name="MaSP" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Load ChiTietHoaDon_Jade_Stage"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ChiTietHoaDon_Jade_Stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.Stage]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.Stage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[TrangThai]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].ExternalColumns[TrangThai]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[TrangThai]"
+                      name="TrangThai"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaChiTiet]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].ExternalColumns[MaChiTiet]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaChiTiet]"
+                      name="MaChiTiet"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaHD]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].ExternalColumns[MaHD]"
+                      length="4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaHD]"
+                      name="MaHD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaSP]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].ExternalColumns[MaSP]"
+                      length="4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaSP]"
+                      name="MaSP"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].ExternalColumns[TrangThai]"
+                      dataType="i4"
+                      name="TrangThai" />
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].ExternalColumns[MaChiTiet]"
+                      dataType="i4"
+                      name="MaChiTiet" />
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].ExternalColumns[MaHD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="MaHD" />
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].ExternalColumns[MaSP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="MaSP" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[MaChiTiet]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[MaChiTiet]"
+                      name="MaChiTiet" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[MaHD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[MaHD]"
+                      name="MaHD" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[MaSP]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[MaSP]"
+                      name="MaSP" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[TrangThai]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[TrangThai]"
+                      name="TrangThai" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup MaHD In HoaDon_NDS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[HoaDon]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[HoaDon]) [refTable]
+where [refTable].[MaHD] = ? and [refTable].[NguonDuLieu] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Ma" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaHD" dataType="DT_STR" length="4" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="MaKH" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaCH" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayBan" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NguonDuLieu" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TrangThai" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayTao" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayCapNhat" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaHD]};#{Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Inputs[Lookup Input].Columns[MaHD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="MaHD"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaHD]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">MaHD</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Inputs[Lookup Input].Columns[NguonDuLieu]"
+                      cachedDataType="i4"
+                      cachedName="NguonDuLieu"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">NguonDuLieu</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup Match Output].Columns[MaHD_NDS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup Match Output].Columns[MaHD_NDS]"
+                      name="MaHD_NDS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Ma</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup MaSP In SanPham_NDS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[SanPham]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[SanPham]) [refTable]
+where [refTable].[MaSP] = ? and [refTable].[NguonDuLieu] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Ma" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MaSP" dataType="DT_STR" length="4" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TenSP" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="GiaSP" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LoaiSP" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NguonDuLieu" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TrangThai" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayTao" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NgayCapNhat" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaSP]};#{Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Inputs[Lookup Input].Columns[NguonDuLieu]"
+                      cachedDataType="i4"
+                      cachedName="NguonDuLieu"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">NguonDuLieu</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Inputs[Lookup Input].Columns[MaSP]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="MaSP"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaSP]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">MaSP</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup Match Output].Columns[MaSP_NDS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup Match Output].Columns[MaSP_NDS]"
+                      name="MaSP_NDS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Ma</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update KhachHang_NDS"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Update [ChiTietHoaDon] set [TrangThai] =?, [NgayCapNhat] = ? where MaChiTiet = ? and NguonDuLieu = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].Columns[TrangThai]"
+                      cachedDataType="i4"
+                      cachedName="TrangThai"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[TrangThai]" />
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].Columns[NgayCapNhap]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="NgayCapNhap"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]" />
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].Columns[MaChiTiet]"
+                      cachedDataType="i4"
+                      cachedName="MaChiTiet"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaChiTiet]" />
+                    <inputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].Columns[NguonDuLieu]"
+                      cachedDataType="i4"
+                      cachedName="NguonDuLieu"
+                      externalMetadataColumnId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="i4"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="dbTimeStamp"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Derived Column Output]"
+              endId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Derived Column Output1]"
+              endId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Derived Column Output2]"
+              endId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Lookup Match Output]"
+              endId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Lookup Match Output1]"
+              endId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Lookup Match Output2]"
+              endId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Lookup No Match Output]"
+              endId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap.Inputs[Derived Column Input]"
+              name="Lookup No Match Output"
+              startId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[OLE DB Source Output]"
+              endId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import from HoaDon_Jade_Stage to HoaDon_NDS"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{d21e47ea-32d6-48be-b588-c036e7f170f0}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import from HoaDon_Jade_Stage to HoaDon_NDS"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>NDS HoaDon_Jade_Stage.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import from SanPham_Jupiter_Stage to SanPham_NDS"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{163a75d7-ed8c-489f-ac25-8f0862c807e3}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import from SanPham_Jupiter_Stage to SanPham_NDS"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>NDS SanPham_Jupiter_stage.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{74BD27BE-61EF-4915-8C02-7247D02A5747}"
+      DTS:From="Package\GET SourceId"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Import from HoaDon_Jade_Stage to HoaDon_NDS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{A04AE05D-2E27-498E-95D4-3B680B3A5EB5}"
+      DTS:From="Package\Import from HoaDon_Jade_Stage to HoaDon_NDS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Import from SanPham_Jupiter_Stage to SanPham_NDS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{1A735647-D16D-4CE4-A783-9C674D9429A3}"
+      DTS:From="Package\Import from SanPham_Jupiter_Stage to SanPham_NDS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149,42"
+          Id="Package\GET SourceId"
+          TopLeft="607,179" />
+        <NodeLayout
+          Size="328,42"
+          Id="Package\Import from HoaDon_Jade_Stage to HoaDon_NDS"
+          TopLeft="517,270" />
+        <NodeLayout
+          Size="396,42"
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS"
+          TopLeft="491,441" />
+        <NodeLayout
+          Size="353,42"
+          Id="Package\Import from SanPham_Jupiter_Stage to SanPham_NDS"
+          TopLeft="511,354" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="681.25,221">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="684.25,312">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="688.25,396">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Update KhachHang_NDS"
+          TopLeft="364,587" />
+        <NodeLayout
+          Size="365,42"
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS"
+          TopLeft="637.25,588.722433460076" />
+        <NodeLayout
+          Size="240,42"
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayTao NgayCapNhap"
+          TopLeft="698,519" />
+        <NodeLayout
+          Size="228,42"
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NguonDuLieu Column"
+          TopLeft="530,145" />
+        <NodeLayout
+          Size="283,42"
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS"
+          TopLeft="505,420" />
+        <NodeLayout
+          Size="246,42"
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage"
+          TopLeft="525,70" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Derived NgayCapNhap"
+          TopLeft="368,514" />
+        <EdgeLayout
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[OLE DB Source Output]"
+          TopLeft="646,112">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Lookup No Match Output]"
+          TopLeft="692.333333333333,462">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="125.666666666667,57"
+              Start="0,0"
+              End="125.666666666667,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.9922698524244" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.9922698524244"
+                    Point2="0,22.9922698524244"
+                    Point3="4,22.9922698524244" />
+                  <mssgle:LineSegment
+                    End="121.666666666667,22.9922698524244" />
+                  <mssgle:CubicBezierSegment
+                    Point1="121.666666666667,22.9922698524244"
+                    Point2="125.666666666667,22.9922698524244"
+                    Point3="125.666666666667,26.9922698524244" />
+                  <mssgle:LineSegment
+                    End="125.666666666667,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="7.02694661458337,27.9922698524244,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Lookup Match Output]"
+          TopLeft="600.666666666667,462">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-136.666666666667,52"
+              Start="0,0"
+              End="-136.666666666667,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.975404075896" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.975404075896"
+                    Point2="0,20.975404075896"
+                    Point3="-4,20.975404075896" />
+                  <mssgle:LineSegment
+                    End="-132.666666666667,20.975404075896" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-132.666666666667,20.975404075896"
+                    Point2="-136.666666666667,20.975404075896"
+                    Point3="-136.666666666667,24.975404075896" />
+                  <mssgle:LineSegment
+                    End="-136.666666666667,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-116.524720052083,25.975404075896,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Derived Column Output1]"
+          TopLeft="465,556">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31"
+              Start="0,0"
+              End="0,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Derived Column Output]"
+          TopLeft="818.875,561">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.722433460076"
+              Start="0,0"
+              End="0,20.222433460076">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.222433460076" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="234,42"
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS"
+          TopLeft="521,224.722433460076" />
+        <EdgeLayout
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Derived Column Output2]"
+          TopLeft="641,187">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.722433460076"
+              Start="0,0"
+              End="0,30.222433460076">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.222433460076" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS"
+          TopLeft="524,313.722433460076" />
+        <EdgeLayout
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Lookup Match Output1]"
+          TopLeft="641.25,266.722433460076">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,13.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS.Paths[Lookup Match Output2]"
+          TopLeft="645.5,355.722433460076">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64.277566539924"
+              Start="0,0"
+              End="0,56.777566539924">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.777566539924" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,22.584095769962,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaSP In SanPham_NDS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[SanPham]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Lookup MaHD In HoaDon_NDS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[HoaDon]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Load ChiTietHoaDon_Jade_Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from ChiTietHoaDon_Jade_stage to ChiTietHoaDon_NDS\Check MaChiTiet In ChiTietHoaDon_NDS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[ChiTietHoaDon]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
