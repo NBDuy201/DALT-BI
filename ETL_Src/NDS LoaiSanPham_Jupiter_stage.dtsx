@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{754ED667-34F1-4B11-877B-81F0719784D7}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{142F10D4-0521-4550-B89F-D22DE806B504}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -299,22 +299,6 @@ where [refTable].[MaLoaiSP] = ? and [refTable].[NguonDuLieu] = ?</property>
                   exclusionGroup="1"
                   name="Lookup Match Output"
                   synchronousInputId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in LoaiSanPham_NDS.Inputs[Lookup Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in LoaiSanPham_NDS.Outputs[Lookup Match Output].Columns[Ma]"
-                      dataType="i4"
-                      errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in LoaiSanPham_NDS.Outputs[Lookup Match Output].Columns[Ma]"
-                      name="Ma"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          dataType="System.String"
-                          description="Specifies the column in the reference table from which a column is copied."
-                          name="CopyFromReferenceColumn">Ma</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
@@ -1077,11 +1061,11 @@ where [refTable].[MaLoaiSP] = ? and [refTable].[NguonDuLieu] = ?</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="149,42"
+          Size="148.8,41.6"
           Id="Package\GET SourceId"
           TopLeft="616,141" />
         <NodeLayout
-          Size="391,42"
+          Size="391.2,41.6"
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS"
           TopLeft="493,278" />
         <EdgeLayout
@@ -1115,36 +1099,36 @@ where [refTable].[MaLoaiSP] = ? and [refTable].[NguonDuLieu] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="240,42"
+          Size="240,41.6"
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayTao NgayCapNhap"
-          TopLeft="764.5,401.5" />
+          TopLeft="536.166675739818,355.566666301621" />
         <NodeLayout
-          Size="216,42"
+          Size="216,41.6"
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Update LoaiSanPham_NDS"
-          TopLeft="389.5,502.5" />
+          TopLeft="161.166675739818,456.566666301621" />
         <NodeLayout
-          Size="273,42"
+          Size="272.8,41.6"
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Check data exist in LoaiSanPham_NDS"
-          TopLeft="566.5,312.5" />
+          TopLeft="338.166675739818,266.566666301621" />
         <NodeLayout
-          Size="398,42"
+          Size="398.4,41.6"
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Insert new LoaiSanPham_Jupiter_Stage into LoaiSanPham_NDS"
-          TopLeft="683.5,500.328903654485" />
+          TopLeft="455.166675739818,454.395569956106" />
         <NodeLayout
-          Size="248,42"
+          Size="248,41.6"
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Load LoaiSanPham_Jupiter_stage"
-          TopLeft="582.5,125.5" />
+          TopLeft="354.166675739818,79.5666663016213" />
         <NodeLayout
-          Size="192,42"
+          Size="192,41.6"
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Derived NgayCapNhap"
-          TopLeft="397.5,400.5" />
+          TopLeft="169.166675739818,354.566666301621" />
         <NodeLayout
-          Size="210,42"
+          Size="209.6,41.6"
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS\Add NguonDuLieu Column"
-          TopLeft="602.5,213.5" />
+          TopLeft="374.166675739818,167.566666301621" />
         <EdgeLayout
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[OLE DB Source Output]"
-          TopLeft="707,167.5">
+          TopLeft="478.666675739818,121.566666301621">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1166,7 +1150,7 @@ where [refTable].[MaLoaiSP] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Lookup No Match Output]"
-          TopLeft="747.166666666667,354.5">
+          TopLeft="518.833342406485,308.566666301621">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1196,13 +1180,13 @@ where [refTable].[MaLoaiSP] = ? and [refTable].[NguonDuLieu] = ?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="12.8602799479167,23.9643117261471,111.6127734375,11.609375"
+              BoundingBox="12.8602799479165,23.9643117261471,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Lookup Match Output]"
-          TopLeft="658.833333333333,354.5">
+          TopLeft="430.500009073151,308.566666301621">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1238,7 +1222,7 @@ where [refTable].[MaLoaiSP] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Derived Column Output2]"
-          TopLeft="705.25,255.5">
+          TopLeft="476.916675739818,209.566666301621">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1260,7 +1244,7 @@ where [refTable].[MaLoaiSP] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Derived Column Output1]"
-          TopLeft="883.5,443.5">
+          TopLeft="655.166675739818,397.566666301621">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1282,7 +1266,7 @@ where [refTable].[MaLoaiSP] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from LoaiSanPham_Jupiter_stage to LoaiCuaHang_NDS.Paths[Derived Column Output]"
-          TopLeft="495.5,442.5">
+          TopLeft="267.166675739818,396.566666301621">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1321,7 +1305,7 @@ where [refTable].[MaLoaiSP] = ? and [refTable].[NguonDuLieu] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="8"
-  DTS:VersionGUID="{157892D7-B5F9-4B38-828D-540CAA0B82EC}">
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{26474700-54C1-4F79-8F2A-BD51807B2B49}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1019,7 +1019,7 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">  Update [KhachHang] set TenKH=?, DiaChi=?, NgayCapNhat=? where MaKH = ? and NguonDuLieu = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">Update [KhachHang] set TenKH=?, DiaChi=?, NgayCapNhat=?, TrangThai = ?, NgheNghiep = ?, SoThich = ? where MaKH = ? and NguonDuLieu = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1064,19 +1064,41 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
                       externalMetadataColumnId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
                       lineageId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Derived NgayCapNhap.Outputs[Derived Column Output].Columns[NgayCapNhap]" />
                     <inputColumn
-                      refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].Columns[NguonDuLieu]"
+                      refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].Columns[TrangThai]"
                       cachedDataType="i4"
-                      cachedName="NguonDuLieu"
+                      cachedName="TrangThai"
+                      externalMetadataColumnId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Load KhachHang_Jade_Stage.Outputs[OLE DB Source Output].Columns[TrangThai]" />
+                    <inputColumn
+                      refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].Columns[NgheNghiep]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="NgheNghiep"
                       externalMetadataColumnId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      lineageId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]" />
+                      lineageId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Load KhachHang_Jade_Stage.Outputs[OLE DB Source Output].Columns[NgheNghiep]" />
                     <inputColumn
                       refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].Columns[MaKH]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="4"
                       cachedName="MaKH"
-                      externalMetadataColumnId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      externalMetadataColumnId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
                       lineageId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Load KhachHang_Jade_Stage.Outputs[OLE DB Source Output].Columns[MaKH]" />
+                    <inputColumn
+                      refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].Columns[NguonDuLieu]"
+                      cachedDataType="i4"
+                      cachedName="NguonDuLieu"
+                      externalMetadataColumnId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Derived NguonDuLieu Column.Outputs[Derived Column Output].Columns[NguonDuLieu]" />
+                    <inputColumn
+                      refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].Columns[SoThich]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="SoThich"
+                      externalMetadataColumnId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Load KhachHang_Jade_Stage.Outputs[OLE DB Source Output].Columns[SoThich]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -1119,9 +1141,7 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      codePage="1252"
-                      dataType="str"
-                      length="4"
+                      dataType="i4"
                       name="Param_3">
                       <properties>
                         <property
@@ -1132,8 +1152,47 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
                     </externalMetadataColumn>
                     <externalMetadataColumn
                       refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      dataType="i4"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
                       name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="i4"
+                      name="Param_7">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -1236,11 +1295,11 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="149,42"
+          Size="148.8,41.6"
           Id="Package\GET SourceId"
           TopLeft="572,177" />
         <NodeLayout
-          Size="362,42"
+          Size="361.6,41.6"
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS"
           TopLeft="467,252" />
         <EdgeLayout
@@ -1274,36 +1333,36 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="365,42"
-          Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS"
-          TopLeft="644.25,471.722433460076" />
-        <NodeLayout
-          Size="204,42"
+          Size="196.8,41.6"
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Update KhachHang_NDS"
-          TopLeft="371,470" />
+          TopLeft="186.000007351239,461.333333264457" />
         <NodeLayout
-          Size="240,42"
+          Size="364.8,41.6"
+          Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Insert new KhachHang_Jade_Stage into KhachHang_NDS"
+          TopLeft="459.250007351239,463.055766724533" />
+        <NodeLayout
+          Size="240,41.6"
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Derived NgayTao NgayCapNhap"
-          TopLeft="705,402" />
+          TopLeft="520.000007351239,393.333333264457" />
         <NodeLayout
-          Size="228,42"
+          Size="228,41.6"
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Derived NguonDuLieu Column"
-          TopLeft="534,213" />
+          TopLeft="349.000007351239,204.333333264457" />
         <NodeLayout
-          Size="235,42"
+          Size="235.2,41.6"
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Lookup Ma In KhachHang_NDS"
-          TopLeft="524,304" />
+          TopLeft="339.000007351239,295.333333264457" />
         <NodeLayout
-          Size="192,42"
-          Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Derived NgayCapNhap"
-          TopLeft="375,397" />
-        <NodeLayout
-          Size="229,42"
+          Size="228.8,41.6"
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Load KhachHang_Jade_Stage"
-          TopLeft="530,116" />
+          TopLeft="345.000007351239,107.333333264457" />
+        <NodeLayout
+          Size="192,41.6"
+          Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS\Derived NgayCapNhap"
+          TopLeft="190.000007351239,388.333333264457" />
         <EdgeLayout
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS.Paths[OLE DB Source Output]"
-          TopLeft="646.25,158">
+          TopLeft="461.250007351239,149.333333264457">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1325,7 +1384,7 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS.Paths[Lookup No Match Output]"
-          TopLeft="679.333333333333,346">
+          TopLeft="494.333340684572,337.333333264457">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1361,7 +1420,7 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS.Paths[Lookup Match Output]"
-          TopLeft="603.666666666667,346">
+          TopLeft="418.666674017906,337.333333264457">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1397,7 +1456,7 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS.Paths[Derived Column Output2]"
-          TopLeft="644.75,255">
+          TopLeft="459.750007351239,246.333333264457">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -1419,18 +1478,18 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS.Paths[Derived Column Output1]"
-          TopLeft="472,439">
+          TopLeft="285.200007351239,429.933333264457">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,31"
+              EndConnector="0,31.4"
               Start="0,0"
-              End="0,23.5">
+              End="0,23.9">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.5" />
+                    End="0,23.9" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1441,7 +1500,7 @@ where [refTable].[MaKH] = ? and [refTable].[NguonDuLieu] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Import from KhachHang_Jade_Stage to KhachHang_NDS.Paths[Derived Column Output]"
-          TopLeft="825.875,444">
+          TopLeft="640.875007351239,435.333333264457">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
